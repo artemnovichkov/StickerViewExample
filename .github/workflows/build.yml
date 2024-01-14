@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  schedule:
+    - cron: "0 2 1 * *"
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: xcodebuild clean build CODE_SIGNING_ALLOWED=NO

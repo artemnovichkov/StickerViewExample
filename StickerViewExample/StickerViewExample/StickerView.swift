@@ -15,34 +15,46 @@ struct StickerView: View {
 
     var body: some View {
         ZStack {
-            Image(uiImage: image)
+            originalImage
+            stickerImage
+        }
+    }
+
+    // MARK: - Private
+
+    @ViewBuilder
+    private var originalImage: some View {
+        Image(uiImage: image)
+            .resizable()
+            .scaledToFit()
+            .opacity(sticker == nil ? 1 : 0)
+            .animation(animation, value: sticker)
+            .overlay {
+                SpoilerView(isOn: true)
+                    .opacity(spoilerViewOpacity)
+            }
+    }
+
+    @ViewBuilder
+    private var stickerImage: some View {
+        if let sticker {
+            Image(uiImage: sticker)
                 .resizable()
                 .scaledToFit()
-                .opacity(sticker == nil ? 1 : 0)
-                .animation(animation, value: sticker)
-                .overlay {
-                    SpoilerView(isOn: true)
-                        .opacity(spoilerViewOpacity)
-                }
-            if let sticker {
-                Image(uiImage: sticker)
-                    .resizable()
-                    .scaledToFit()
-                    .scaleEffect(stickerScale)
-                    .onAppear {
+                .scaleEffect(stickerScale)
+                .onAppear {
+                    withAnimation(animation) {
+                        spoilerViewOpacity = 1
+                        stickerScale = 1.1
+                    } completion: {
+                        withAnimation(.linear) {
+                            spoilerViewOpacity = 0
+                        }
                         withAnimation(animation) {
-                            spoilerViewOpacity = 1
-                            stickerScale = 1.1
-                        } completion: {
-                            withAnimation(.linear) {
-                                spoilerViewOpacity = 0
-                            }
-                            withAnimation(animation) {
-                                stickerScale = 1
-                            }
+                            stickerScale = 1
                         }
                     }
-            }
+                }
         }
     }
 }

@@ -57,10 +57,10 @@
 			children = (
 				0685CC2C2B525EBC00CD432A /* StickerViewExampleApp.swift */,
 				0685CC2E2B525EBC00CD432A /* ContentView.swift */,
+				0685CC3C2B526F9F00CD432A /* StickerView.swift */,
+				0685CC3A2B52681000CD432A /* SpoilerView.swift */,
 				0685CC302B525EBE00CD432A /* Assets.xcassets */,
 				0685CC322B525EBE00CD432A /* Preview Content */,
-				0685CC3A2B52681000CD432A /* SpoilerView.swift */,
-				0685CC3C2B526F9F00CD432A /* StickerView.swift */,
 			);
 			path = StickerViewExample;
 			sourceTree = "<group>";

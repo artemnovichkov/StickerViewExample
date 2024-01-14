@@ -3,7 +3,6 @@
 //
 
 import SwiftUI
-import PhotosUI
 import Vision
 import CoreImage.CIFilterBuiltins
 
@@ -16,15 +15,10 @@ struct ContentView: View {
     private var processingQueue = DispatchQueue(label: "ProcessingQueue")
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack {
             StickerView(image: $image, sticker: $sticker)
-            Button(action: { createSticker() }) {
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                } else {
-                    Text("Create a sticker")
-                }
+            Button("Create a sticker") {
+                createSticker()
             }
         }
         .padding()
@@ -33,9 +27,6 @@ struct ContentView: View {
     // MARK: - Private
 
     private func createSticker() {
-        if isLoading {
-            return
-        }
         guard let inputImage = CIImage(image: image) else {
             print("Failed to create CIImage")
             return
@@ -49,9 +40,8 @@ struct ContentView: View {
                 }
                 return
             }
-            let outputImage = apply(mask: maskImage, to: inputImage)
-            let cgImage = render(ciImage: outputImage)
-            let image = UIImage(cgImage: cgImage)
+            let outputImage = apply(maskImage: maskImage, to: inputImage)
+            let image = render(ciImage: outputImage)
             DispatchQueue.main.async {
                 isLoading = false
                 sticker = image
@@ -81,19 +71,19 @@ struct ContentView: View {
         }
     }
 
-    private func apply(mask: CIImage, to image: CIImage) -> CIImage {
+    private func apply(maskImage: CIImage, to inputImage: CIImage) -> CIImage {
         let filter = CIFilter.blendWithMask()
-        filter.inputImage = image
-        filter.maskImage = mask
+        filter.inputImage = inputImage
+        filter.maskImage = maskImage
         filter.backgroundImage = CIImage.empty()
         return filter.outputImage!
     }
 
-    private func render(ciImage: CIImage) -> CGImage {
+    private func render(ciImage: CIImage) -> UIImage {
         guard let cgImage = CIContext(options: nil).createCGImage(ciImage, from: ciImage.extent) else {
-            fatalError("Failed to render CIImage.")
+            fatalError("Failed to render CGImage")
         }
-        return cgImage
+        return UIImage(cgImage: cgImage)
     }
 }
 

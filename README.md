@@ -3,8 +3,6 @@
 
 An example project for [Remove background from image in SwiftUI](https://www.artemnovichkov.com/blog/remove-background-from-image-in-swiftui) article.
 
-[![Build](https://github.com/artemnovichkov/StickerViewExample/actions/workflows/build.yml/badge.svg)](https://github.com/artemnovichkov/StickerViewExample/actions/workflows/build.yml)
-
 <p align="center"/>
   <img src=".github/final-animation.gif" width="40%"/>
 </p>

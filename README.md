@@ -6,8 +6,7 @@ An example project for [Remove background from image in SwiftUI](https://www.art
 [![Build](https://github.com/artemnovichkov/StickerViewExample/actions/workflows/build.yml/badge.svg)](https://github.com/artemnovichkov/StickerViewExample/actions/workflows/build.yml)
 
 <p align="center"/>
-  <img src=".github/before.png" width="40%"/>
-  <img src=".github/after.png" width="40%"/>
+  <img src=".github/final-animation.gif" width="40%"/>
 </p>
 
 ## Author

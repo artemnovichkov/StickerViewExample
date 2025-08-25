@@ -1,7 +1,7 @@
 
 # Sticker View Example
 
-An example project for [Remove background from image in SwiftUI](https://www.artemnovichkov.com/blog/remove-background-from-image-in-swiftui) article.
+An example project for [Remove background from image in SwiftUI](https://artemnovichkov.com/blog/remove-background-from-image-in-swiftui) article.
 
 <p align="center"/>
   <img src=".github/final-animation.gif" width="40%"/>

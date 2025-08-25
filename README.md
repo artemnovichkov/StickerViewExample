@@ -9,7 +9,7 @@ An example project for [Remove background from image in SwiftUI](https://www.art
 
 ## Author
 
-Artem Novichkov, https://www.artemnovichkov.com/about
+Artem Novichkov, https://artemnovichkov.com
 
 ## License
 
